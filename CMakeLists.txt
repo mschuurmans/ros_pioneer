@@ -4,7 +4,10 @@ project(pioneer)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp)
+
+set(DRIVER_NAME driver)
+set(DRIVER_SOURCES src/driver/main.cpp)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -120,6 +123,9 @@ catkin_package(
 ## either from message generation or dynamic reconfigure
 # add_dependencies(pioneer ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+add_executable(${DRIVER_NAME} ${DRIVER_SOURCES})
+add_dependencies(${DRIVER_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(${DRIVER_NAME} ${catkin_LIBRARIES})
 ## Declare a C++ executable
 # add_executable(pioneer_node src/pioneer_node.cpp)
 
