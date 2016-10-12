@@ -1,0 +1,4 @@
+<launch>
+        <node name="dirver" pkg="pioneer" type="driver" output="screen" />
+        <node name="rosaria" pkg="rosaria" type="RosAria" output="screen" />
+</launch>
